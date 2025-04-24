@@ -1,7 +1,6 @@
 
 import React from 'react';
 import { useAudio } from '@/hooks/useAudio';
-import { Track } from '@/data/mockData';
 import { Slider } from '@/components/ui/slider';
 import { Volume2, SkipBack, SkipForward, Play, Pause, Volume, VolumeX } from 'lucide-react';
 import AudioVisualizer from './AudioVisualizer';
@@ -106,7 +105,7 @@ const MusicPlayer: React.FC = () => {
                 className="text-gray-300 hover:text-white transition-colors"
                 onClick={prevTrack}
               >
-                <SkipBack size={24} md:size={28} />
+                <SkipBack size={isMobile ? 24 : 28} />
               </button>
               
               <button 
@@ -114,8 +113,8 @@ const MusicPlayer: React.FC = () => {
                 onClick={togglePlay}
               >
                 {isPlaying 
-                  ? <Pause size={24} md:size={28} className="text-white" /> 
-                  : <Play size={24} md:size={28} className="text-white ml-1" />
+                  ? <Pause size={isMobile ? 24 : 28} className="text-white" /> 
+                  : <Play size={isMobile ? 24 : 28} className="text-white ml-1" />
                 }
               </button>
               
@@ -123,7 +122,7 @@ const MusicPlayer: React.FC = () => {
                 className="text-gray-300 hover:text-white transition-colors"
                 onClick={nextTrack}
               >
-                <SkipForward size={24} md:size={28} />
+                <SkipForward size={isMobile ? 24 : 28} />
               </button>
             </div>
             
