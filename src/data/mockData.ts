@@ -1,4 +1,3 @@
-
 export interface Artist {
   id: string;
   name: string;
@@ -39,13 +38,13 @@ export interface Playlist {
 export const artists: Artist[] = [
   {
     id: "artist1",
-    name: "Lunar Waves",
-    imageUrl: "https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?w=500&auto=format",
+    name: "Hans Zimmer",
+    imageUrl: "https://images.unsplash.com/photo-1581092459407-7160404903f7?w=500&auto=format",
   },
   {
     id: "artist2",
-    name: "Electric Pulse",
-    imageUrl: "https://images.unsplash.com/photo-1501386761578-eac5c94b800a?w=500&auto=format",
+    name: "John Williams",
+    imageUrl: "https://images.unsplash.com/photo-1507838153414-b4b713384a76?w=500&auto=format",
   },
   {
     id: "artist3",
@@ -67,20 +66,20 @@ export const artists: Artist[] = [
 export const albums: Album[] = [
   {
     id: "album1",
-    title: "Cosmic Journey",
+    title: "Inception",
     artistId: "artist1",
-    artist: "Lunar Waves",
-    imageUrl: "https://images.unsplash.com/photo-1614149162883-504ce4d13909?w=500&auto=format",
-    releaseYear: 2023,
+    artist: "Hans Zimmer",
+    imageUrl: "https://images.unsplash.com/photo-1533134242443-d4fd5107340c?w=500&auto=format",
+    releaseYear: 2010,
     tracks: [],
   },
   {
     id: "album2",
-    title: "Electric Dreams",
-    artistId: "artist2",
-    artist: "Electric Pulse",
-    imageUrl: "https://images.unsplash.com/photo-1446057032654-9d8885db76c6?w=500&auto=format",
-    releaseYear: 2022,
+    title: "Interstellar",
+    artistId: "artist1",
+    artist: "Hans Zimmer",
+    imageUrl: "https://images.unsplash.com/photo-1446941611757-91d2c3bd3d45?w=500&auto=format",
+    releaseYear: 2014,
     tracks: [],
   },
   {
@@ -112,57 +111,51 @@ export const albums: Album[] = [
   },
 ];
 
-// Create the tracks array and explicitly export it
 export const tracks: Track[] = [
-  // Album 1 tracks
   {
     id: "track1",
-    title: "Cosmic Overture",
+    title: "Time",
     artistId: "artist1",
-    artist: "Lunar Waves",
+    artist: "Hans Zimmer",
     albumId: "album1",
-    album: "Cosmic Journey",
-    duration: 215, // 3:35
-    imageUrl: "https://images.unsplash.com/photo-1614149162883-504ce4d13909?w=500&auto=format",
+    album: "Inception",
+    duration: 275, // 4:35
+    imageUrl: "https://images.unsplash.com/photo-1533134242443-d4fd5107340c?w=500&auto=format",
     audioUrl: "https://assets.mixkit.co/music/preview/mixkit-tech-house-vibes-130.mp3",
   },
   {
     id: "track2",
-    title: "Stellar Drift",
+    title: "Dream Is Collapsing",
     artistId: "artist1",
-    artist: "Lunar Waves",
+    artist: "Hans Zimmer",
     albumId: "album1",
-    album: "Cosmic Journey",
-    duration: 184, // 3:04
-    imageUrl: "https://images.unsplash.com/photo-1614149162883-504ce4d13909?w=500&auto=format",
+    album: "Inception",
+    duration: 324, // 5:24
+    imageUrl: "https://images.unsplash.com/photo-1533134242443-d4fd5107340c?w=500&auto=format",
     audioUrl: "https://assets.mixkit.co/music/preview/mixkit-hip-hop-02-621.mp3",
   },
-  
-  // Album 2 tracks
   {
     id: "track3",
-    title: "Electric Sunset",
-    artistId: "artist2",
-    artist: "Electric Pulse",
+    title: "Cornfield Chase",
+    artistId: "artist1",
+    artist: "Hans Zimmer",
     albumId: "album2",
-    album: "Electric Dreams",
+    album: "Interstellar",
     duration: 247, // 4:07
-    imageUrl: "https://images.unsplash.com/photo-1446057032654-9d8885db76c6?w=500&auto=format",
+    imageUrl: "https://images.unsplash.com/photo-1446941611757-91d2c3bd3d45?w=500&auto=format",
     audioUrl: "https://assets.mixkit.co/music/preview/mixkit-valley-sunset-127.mp3",
   },
   {
     id: "track4",
-    title: "Neon Pulse",
-    artistId: "artist2",
-    artist: "Electric Pulse",
+    title: "Mountains",
+    artistId: "artist1",
+    artist: "Hans Zimmer",
     albumId: "album2",
-    album: "Electric Dreams",
+    album: "Interstellar",
     duration: 226, // 3:46
-    imageUrl: "https://images.unsplash.com/photo-1446057032654-9d8885db76c6?w=500&auto=format",
-    audioUrl: "https://assets.mixkit.co/music/preview/mixkit-c-major-movement-923.mp3",
+    imageUrl: "https://images.unsplash.com/photo-1446941611757-91d2c3bd3d45?w=500&auto=format",
+    audioUrl: "https://assets.mixkit.co/music/preview/mixkit-serene-view-443.mp3",
   },
-  
-  // Album 3 tracks
   {
     id: "track5",
     title: "Horizon Line",
@@ -185,8 +178,6 @@ export const tracks: Track[] = [
     imageUrl: "https://images.unsplash.com/photo-1581833971358-2c8b550f87b3?w=500&auto=format",
     audioUrl: "https://assets.mixkit.co/music/preview/mixkit-dreaming-big-31.mp3",
   },
-  
-  // Album 4 tracks
   {
     id: "track7",
     title: "City Lights",
@@ -209,8 +200,6 @@ export const tracks: Track[] = [
     imageUrl: "https://images.unsplash.com/photo-1506157786151-b8491531f063?w=500&auto=format",
     audioUrl: "https://assets.mixkit.co/music/preview/mixkit-deep-urban-623.mp3",
   },
-  
-  // Album 5 tracks
   {
     id: "track9",
     title: "Midnight Journey",
@@ -235,7 +224,6 @@ export const tracks: Track[] = [
   },
 ];
 
-// Assign tracks to their albums
 albums.forEach(album => {
   album.tracks = tracks.filter(track => track.albumId === album.id);
 });
@@ -275,14 +263,12 @@ export const playlists: Playlist[] = [
   }
 ];
 
-// Featured content
 export const featuredContent = {
   playlists: [playlists[0], playlists[3]],
   albums: [albums[0], albums[2], albums[4]],
   artists: [artists[0], artists[2], artists[4]],
 };
 
-// For the "Browse All" section
 export const categories = [
   { id: "cat1", name: "Hip-Hop", imageUrl: "https://images.unsplash.com/photo-1547355253-ff0740f6e8c1?w=500&auto=format" },
   { id: "cat2", name: "Electronic", imageUrl: "https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=500&auto=format" },
@@ -292,8 +278,6 @@ export const categories = [
   { id: "cat6", name: "Indie", imageUrl: "https://images.unsplash.com/photo-1514320291840-2e0a9bf2a9ae?w=500&auto=format" },
 ];
 
-// Recently played
 export const recentlyPlayed = tracks.slice(0, 5);
 
-// New releases
 export const newReleases = [albums[0], albums[2], albums[4]];
