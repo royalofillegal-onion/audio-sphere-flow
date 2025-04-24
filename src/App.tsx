@@ -1,4 +1,3 @@
-
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -15,6 +14,7 @@ import AlbumPage from "./pages/AlbumPage";
 import PlaylistPage from "./pages/PlaylistPage";
 import MusicPlayer from "./components/MusicPlayer";
 import NotFound from "./pages/NotFound";
+import AddMusic from "./pages/AddMusic";
 
 const queryClient = new QueryClient();
 
@@ -33,6 +33,7 @@ const App = () => (
               <Route path="artist/:id" element={<ArtistPage />} />
               <Route path="album/:id" element={<AlbumPage />} />
               <Route path="playlist/:id" element={<PlaylistPage />} />
+              <Route path="add-music" element={<AddMusic />} />
             </Route>
             <Route path="/player" element={<MusicPlayer />} />
             <Route path="*" element={<NotFound />} />
