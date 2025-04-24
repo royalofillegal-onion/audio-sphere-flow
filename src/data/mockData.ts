@@ -112,8 +112,8 @@ export const albums: Album[] = [
   },
 ];
 
-// Populate tracks for each album
-const tracks: Track[] = [
+// Create the tracks array and explicitly export it
+export const tracks: Track[] = [
   // Album 1 tracks
   {
     id: "track1",
