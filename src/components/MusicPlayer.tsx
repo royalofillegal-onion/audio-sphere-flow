@@ -5,6 +5,7 @@ import { Track } from '@/data/mockData';
 import { Slider } from '@/components/ui/slider';
 import { Volume2, SkipBack, SkipForward, Play, Pause, Volume, VolumeX } from 'lucide-react';
 import AudioVisualizer from './AudioVisualizer';
+import { useIsMobile } from '@/hooks/use-mobile';
 
 const MusicPlayer: React.FC = () => {
   const { 
@@ -21,6 +22,8 @@ const MusicPlayer: React.FC = () => {
     duration,
     seek
   } = useAudio();
+
+  const isMobile = useIsMobile();
 
   const handleSliderChange = (value: number[]) => {
     if (duration) {
@@ -40,9 +43,9 @@ const MusicPlayer: React.FC = () => {
 
   if (!currentTrack) {
     return (
-      <div className="h-screen flex flex-col items-center justify-center bg-gradient-to-br from-spotify-dark to-black p-8">
-        <h2 className="text-3xl font-bold text-white mb-4">No track selected</h2>
-        <p className="text-gray-400 text-center max-w-md">
+      <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-spotify-dark to-black p-4 md:p-8">
+        <h2 className="text-2xl md:text-3xl font-bold text-white mb-4 text-center">No track selected</h2>
+        <p className="text-gray-400 text-center max-w-md px-4">
           Choose a track from your library to start listening, or explore our featured playlists for some recommendations.
         </p>
       </div>
@@ -50,24 +53,24 @@ const MusicPlayer: React.FC = () => {
   }
 
   return (
-    <div className="h-screen flex flex-col bg-gradient-to-br from-spotify-dark to-black p-8">
-      <div className="flex flex-col md:flex-row flex-1 gap-8">
+    <div className="min-h-screen flex flex-col bg-gradient-to-br from-spotify-dark to-black p-4 md:p-8">
+      <div className="flex flex-col md:flex-row flex-1 gap-4 md:gap-8">
         <div className="flex-1 flex items-center justify-center">
           <img 
             src={currentTrack.imageUrl} 
             alt={currentTrack.title} 
-            className="max-w-xs w-full aspect-square rounded-lg shadow-2xl"
+            className="w-full max-w-[280px] md:max-w-xs aspect-square rounded-lg shadow-2xl"
           />
         </div>
         
         <div className="flex-1 flex flex-col justify-center">
-          <div className="mb-8">
-            <h1 className="text-4xl font-bold text-white mb-2">{currentTrack.title}</h1>
-            <h2 className="text-xl text-gray-300">{currentTrack.artist}</h2>
+          <div className="mb-6 md:mb-8 text-center md:text-left">
+            <h1 className="text-2xl md:text-4xl font-bold text-white mb-2">{currentTrack.title}</h1>
+            <h2 className="text-lg md:text-xl text-gray-300">{currentTrack.artist}</h2>
             <p className="text-gray-400">{currentTrack.album}</p>
           </div>
           
-          <AudioVisualizer className="mb-8" />
+          <AudioVisualizer className="mb-6 md:mb-8" />
           
           <div className="mb-4">
             <div className="flex items-center justify-between mb-2">
@@ -84,24 +87,26 @@ const MusicPlayer: React.FC = () => {
             />
           </div>
           
-          <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-2">
-              {renderVolumeIcon()}
-              <Slider
-                value={[volume * 100]}
-                max={100}
-                step={1}
-                className="w-24"
-                onValueChange={handleVolumeChange}
-              />
-            </div>
+          <div className="flex flex-col md:flex-row items-center justify-between gap-4 md:gap-0">
+            {!isMobile && (
+              <div className="flex items-center space-x-2">
+                {renderVolumeIcon()}
+                <Slider
+                  value={[volume * 100]}
+                  max={100}
+                  step={1}
+                  className="w-24"
+                  onValueChange={handleVolumeChange}
+                />
+              </div>
+            )}
             
             <div className="flex items-center space-x-8">
               <button 
                 className="text-gray-300 hover:text-white transition-colors"
                 onClick={prevTrack}
               >
-                <SkipBack size={28} />
+                <SkipBack size={24} md:size={28} />
               </button>
               
               <button 
@@ -109,8 +114,8 @@ const MusicPlayer: React.FC = () => {
                 onClick={togglePlay}
               >
                 {isPlaying 
-                  ? <Pause size={28} className="text-white" /> 
-                  : <Play size={28} className="text-white ml-1" />
+                  ? <Pause size={24} md:size={28} className="text-white" /> 
+                  : <Play size={24} md:size={28} className="text-white ml-1" />
                 }
               </button>
               
@@ -118,11 +123,11 @@ const MusicPlayer: React.FC = () => {
                 className="text-gray-300 hover:text-white transition-colors"
                 onClick={nextTrack}
               >
-                <SkipForward size={28} />
+                <SkipForward size={24} md:size={28} />
               </button>
             </div>
             
-            <div className="w-28"></div> {/* Placeholder for balance */}
+            <div className="w-24 md:w-28"></div>
           </div>
         </div>
       </div>
