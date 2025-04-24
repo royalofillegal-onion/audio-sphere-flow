@@ -1,0 +1,128 @@
+
+import React from 'react';
+import { useParams } from 'react-router-dom';
+import { ScrollArea } from '@/components/ui/scroll-area';
+import { Button } from '@/components/ui/button';
+import { Play, Heart, Clock } from 'lucide-react';
+import { playlists } from '@/data/mockData';
+import { useAudioContext } from '@/contexts/AudioContext';
+
+const PlaylistPage: React.FC = () => {
+  const { id } = useParams<{ id: string }>();
+  const { setCurrentTrack } = useAudioContext();
+  
+  const playlist = playlists.find(playlist => playlist.id === id);
+  
+  if (!playlist) {
+    return (
+      <div className="p-6 text-center">
+        <h1 className="text-2xl font-bold">Playlist not found</h1>
+      </div>
+    );
+  }
+
+  const handlePlayPlaylist = () => {
+    if (playlist.tracks.length > 0) {
+      setCurrentTrack(playlist.tracks[0]);
+    }
+  };
+
+  const totalDuration = playlist.tracks.reduce((sum, track) => sum + track.duration, 0);
+  const formatTotalDuration = () => {
+    const minutes = Math.floor(totalDuration / 60);
+    if (minutes < 60) {
+      return `${minutes} min`;
+    }
+    const hours = Math.floor(minutes / 60);
+    const remainingMinutes = minutes % 60;
+    return `${hours} hr ${remainingMinutes} min`;
+  };
+
+  const formatDuration = (seconds: number) => {
+    const minutes = Math.floor(seconds / 60);
+    const remainingSeconds = seconds % 60;
+    return `${minutes}:${remainingSeconds.toString().padStart(2, '0')}`;
+  };
+
+  return (
+    <ScrollArea className="h-full">
+      <div>
+        <div className="bg-gradient-to-b from-spotify-light-purple/30 to-spotify-black p-6 flex flex-col md:flex-row items-center md:items-end gap-6">
+          <img 
+            src={playlist.imageUrl} 
+            alt={playlist.title} 
+            className="w-48 h-48 shadow-xl"
+          />
+          <div>
+            <p className="text-sm uppercase mb-1">Playlist</p>
+            <h1 className="text-5xl font-bold mb-2">{playlist.title}</h1>
+            <p className="text-gray-300 mb-2">{playlist.description}</p>
+            <div className="flex items-center text-sm text-gray-300">
+              <span className="font-semibold">{playlist.createdBy}</span>
+              <span className="mx-1">•</span>
+              <span>{playlist.tracks.length} songs,</span>
+              <span className="ml-1">{formatTotalDuration()}</span>
+            </div>
+          </div>
+        </div>
+        
+        <div className="p-6">
+          <div className="flex items-center space-x-4 mb-8">
+            <Button 
+              className="rounded-full bg-spotify-purple hover:bg-spotify-vibrant-purple w-12 h-12 flex items-center justify-center p-0"
+              onClick={handlePlayPlaylist}
+            >
+              <Play size={24} className="ml-1" />
+            </Button>
+            <Button variant="outline" className="rounded-full border border-gray-700 bg-transparent hover:bg-gray-800">
+              <Heart size={18} className="mr-2" />
+              Save
+            </Button>
+          </div>
+          
+          <div className="mb-8">
+            <div className="grid grid-cols-[16px_4fr_2fr_minmax(120px,1fr)] gap-4 px-4 py-2 border-b border-gray-700 text-gray-400 text-sm">
+              <div className="text-center">#</div>
+              <div>Title</div>
+              <div>Album</div>
+              <div className="flex justify-end">
+                <Clock size={16} />
+              </div>
+            </div>
+            
+            {playlist.tracks.map((track, index) => (
+              <div 
+                key={track.id}
+                className="grid grid-cols-[16px_4fr_2fr_minmax(120px,1fr)] gap-4 px-4 py-3 hover:bg-spotify-gray/40 rounded-md cursor-pointer"
+                onClick={() => setCurrentTrack(track)}
+              >
+                <div className="flex items-center justify-center text-gray-400">
+                  {index + 1}
+                </div>
+                <div className="flex items-center gap-3">
+                  <img 
+                    src={track.imageUrl} 
+                    alt={track.title} 
+                    className="w-10 h-10 object-cover"
+                  />
+                  <div>
+                    <div className="text-white">{track.title}</div>
+                    <div className="text-sm text-gray-400">{track.artist}</div>
+                  </div>
+                </div>
+                <div className="flex items-center text-gray-400">
+                  {track.album}
+                </div>
+                <div className="flex items-center justify-end text-gray-400">
+                  {formatDuration(track.duration)}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </ScrollArea>
+  );
+};
+
+export default PlaylistPage;
