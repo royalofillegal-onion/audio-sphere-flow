@@ -1,3 +1,5 @@
+import { teluguSongs } from './telugu-songs';
+
 export interface Artist {
   id: string;
   name: string;
@@ -49,7 +51,7 @@ export const artists: Artist[] = [
   {
     id: "artist3",
     name: "Stellar Echo",
-    imageUrl: "https://images.unsplash.com/photo-1518609878373-06d740f60d8b?w=500&auto=format",
+    imageUrl: "https://images.unsplash.com/photo-1518633971358-2c8b550f87b3?w=500&auto=format",
   },
   {
     id: "artist4",
@@ -59,7 +61,7 @@ export const artists: Artist[] = [
   {
     id: "artist5",
     name: "Midnight Voyage",
-    imageUrl: "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=500&auto=format",
+    imageUrl: "https://images.unsplash.com/photo-1496293455970-f8581aae0e3b?w=500&auto=format",
   },
 ];
 
@@ -112,6 +114,7 @@ export const albums: Album[] = [
 ];
 
 export const tracks: Track[] = [
+  ...teluguSongs,
   {
     id: "track1",
     title: "Time",
