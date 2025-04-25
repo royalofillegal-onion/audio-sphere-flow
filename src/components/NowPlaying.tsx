@@ -36,7 +36,7 @@ const NowPlaying: React.FC = () => {
   if (!currentTrack) return null;
 
   return (
-    <div className="bg-spotify-gray border-t border-gray-800 flex flex-col md:flex-row items-center px-2 sm:px-4 py-2 sm:py-3 h-auto md:h-24 gap-2 md:gap-0 w-full">
+    <div className="bg-spotify-gray border-t border-gray-800 fixed bottom-0 left-0 right-0 md:relative flex flex-col md:flex-row items-center px-2 sm:px-4 py-2 sm:py-3 h-auto md:h-24 gap-2 md:gap-0 w-full z-10">
       <div className="flex items-center w-full md:w-1/4">
         <img 
           src={currentTrack.imageUrl} 
@@ -98,29 +98,16 @@ const NowPlaying: React.FC = () => {
         </div>
       </div>
       
-      {isMobile ? (
-        <div className="flex items-center justify-center w-full space-x-2 pb-1 pt-1">
-          <Volume size={14} className="text-gray-400" />
-          <Slider
-            value={[volume * 100]}
-            max={100}
-            step={1}
-            className="w-24"
-            onValueChange={handleVolumeChange}
-          />
-        </div>
-      ) : (
-        <div className="hidden md:flex items-center justify-end w-full md:w-1/4 space-x-2">
-          <Volume size={18} className="text-gray-400" />
-          <Slider
-            value={[volume * 100]}
-            max={100}
-            step={1}
-            className="w-24"
-            onValueChange={handleVolumeChange}
-          />
-        </div>
-      )}
+      <div className="flex items-center justify-center w-full md:w-1/4 space-x-2 pb-1 pt-1 md:justify-end">
+        <Volume size={isMobile ? 14 : 18} className="text-gray-400" />
+        <Slider
+          value={[volume * 100]}
+          max={100}
+          step={1}
+          className="w-24"
+          onValueChange={handleVolumeChange}
+        />
+      </div>
     </div>
   );
 };
