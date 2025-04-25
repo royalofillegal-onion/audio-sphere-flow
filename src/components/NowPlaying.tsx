@@ -79,7 +79,7 @@ const NowPlaying: React.FC = () => {
           </button>
         </div>
         
-        <div className="flex items-center space-x-1 sm:space-x-2 w-full max-w-[250px] sm:max-w-md">
+        <div className="flex items-center space-x-1 sm:space-x-2 w-full max-w-[300px] sm:max-w-md px-2">
           <div className="text-[10px] sm:text-xs text-gray-400 w-8 sm:w-10 text-right">
             {formatTime(currentTime)}
           </div>
@@ -98,7 +98,18 @@ const NowPlaying: React.FC = () => {
         </div>
       </div>
       
-      {!isMobile && (
+      {isMobile ? (
+        <div className="flex items-center justify-center w-full space-x-2 pb-1 pt-1">
+          <Volume size={14} className="text-gray-400" />
+          <Slider
+            value={[volume * 100]}
+            max={100}
+            step={1}
+            className="w-24"
+            onValueChange={handleVolumeChange}
+          />
+        </div>
+      ) : (
         <div className="hidden md:flex items-center justify-end w-full md:w-1/4 space-x-2">
           <Volume size={18} className="text-gray-400" />
           <Slider

@@ -20,7 +20,7 @@ const MainLayout: React.FC = () => {
       <Sidebar collapsed={sidebarCollapsed || isMobile} toggleCollapse={toggleSidebar} />
       
       <main className="flex-1 flex flex-col overflow-hidden w-full">
-        <div className="flex-1 overflow-y-auto scrollbar-hidden">
+        <div className="flex-1 overflow-y-auto scrollbar-hidden pb-32 md:pb-0">
           <Outlet />
         </div>
         
